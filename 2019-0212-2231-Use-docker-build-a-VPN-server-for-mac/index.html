@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Use docker build a VPN server for mac | Wico&#39;s logbook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. create vpn setting$ vim ~/workspace/docker/vpn/env 123VPN_IPSEC_PSK=someword_pre_shared_keyVPN_USER=usernameVPN_PASSWORD=userpwd">
+<meta name="keywords" content="docker,centos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Use docker build a VPN server for mac">
+<meta property="og:url" content="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/index.html">
+<meta property="og:site_name" content="Wico&#39;s logbook">
+<meta property="og:description" content="1. create vpn setting$ vim ~/workspace/docker/vpn/env 123VPN_IPSEC_PSK=someword_pre_shared_keyVPN_USER=usernameVPN_PASSWORD=userpwd">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/1.png">
+<meta property="og:image" content="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/2.png">
+<meta property="og:updated_time" content="2019-02-12T14:31:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Use docker build a VPN server for mac">
+<meta name="twitter:description" content="1. create vpn setting$ vim ~/workspace/docker/vpn/env 123VPN_IPSEC_PSK=someword_pre_shared_keyVPN_USER=usernameVPN_PASSWORD=userpwd">
+<meta name="twitter:image" content="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Wico&#39;s logbook" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-88026948-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-88026948-1');
+</script>
+
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Wico&#39;s logbook</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wicowen.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2019-0212-2231-Use-docker-build-a-VPN-server-for-mac" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/" class="article-date">
+  <time datetime="2019-02-12T14:31:07.000Z" itemprop="datePublished">2019-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Use docker build a VPN server for mac
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-create-vpn-setting"><a href="#1-create-vpn-setting" class="headerlink" title="1. create vpn setting"></a>1. create vpn setting</h4><p>$ vim ~/workspace/docker/vpn/env</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VPN_IPSEC_PSK=someword_pre_shared_key</span><br><span class="line">VPN_USER=username</span><br><span class="line">VPN_PASSWORD=userpwd</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<hr>
+<h4 id="2-load-the-IPsec-af-key-kernel-module-on-the-Docker-host"><a href="#2-load-the-IPsec-af-key-kernel-module-on-the-Docker-host" class="headerlink" title="2. load the IPsec af_key kernel module on the Docker host."></a>2. load the IPsec <code>af_key</code> kernel module on the Docker host.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe af_key</span><br></pre></td></tr></table></figure>
+<h4 id="2-1-load-it-on-startup-centos"><a href="#2-1-load-it-on-startup-centos" class="headerlink" title="2.1 load it on startup (centos)"></a>2.1 load it on startup (centos)</h4><p>$ vim /etc/modules-load.d/af_key.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Load af_key at boot</span><br><span class="line">af_key</span><br></pre></td></tr></table></figure></p>
+<h5 id="To-ensure-that-this-kernel-module-is-loaded-on-boot-please-refer-to-Ubuntu-Debian-CentOS-6-CentOS-7-Fedora-and-CoreOS"><a href="#To-ensure-that-this-kernel-module-is-loaded-on-boot-please-refer-to-Ubuntu-Debian-CentOS-6-CentOS-7-Fedora-and-CoreOS" class="headerlink" title="* To ensure that this kernel module is loaded on boot, please refer to: Ubuntu/Debian, CentOS 6, CentOS 7, Fedora and CoreOS."></a>* To ensure that this kernel module is loaded on boot, please refer to: <a href="https://help.ubuntu.com/community/Loadable_Modules" target="_blank" rel="noopener">Ubuntu/Debian</a>, <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-persistent_module_loading" target="_blank" rel="noopener">CentOS 6</a>, <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Kernel_Administration_Guide/sec-Persistent_Module_Loading.html" target="_blank" rel="noopener">CentOS 7</a>, <a href="https://docs.fedoraproject.org/en-US/fedora/f28/system-administrators-guide/kernel-module-driver-configuration/Working_with_Kernel_Modules/index.html#sec-Persistent_Module_Loading" target="_blank" rel="noopener">Fedora</a> and <a href="https://coreos.com/os/docs/latest/other-settings.html" target="_blank" rel="noopener">CoreOS</a>.</h5><hr>
+<h4 id="3-Create-a-new-Docker-container-from-this-image-replace-vpn-env-with-your-own-env-file"><a href="#3-Create-a-new-Docker-container-from-this-image-replace-vpn-env-with-your-own-env-file" class="headerlink" title="3. Create a new Docker container from this image (replace ~/.../vpn/env with your own env file):"></a>3. Create a new Docker container from this image (replace <code>~/.../vpn/env</code> with your own <code>env</code> file):</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker run \</span><br><span class="line">    --name ipsec-vpn-server \</span><br><span class="line">    --env-file ~/workspace/docker/vpn/env \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -p 500:500/udp \</span><br><span class="line">    -p 4500:4500/udp \</span><br><span class="line">    -v /lib/modules:/lib/modules:ro \</span><br><span class="line">    -d --privileged \</span><br><span class="line">    hwdsl2/ipsec-vpn-server</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="View-log"><a href="#View-log" class="headerlink" title="View log"></a>View log</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs ipsec-vpn-server</span><br></pre></td></tr></table></figure>
+<h4 id="Check-server-status"><a href="#Check-server-status" class="headerlink" title="Check server status"></a>Check server status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it ipsec-vpn-server ipsec status</span><br></pre></td></tr></table></figure>
+<h4 id="display-current-established-VPN-connections"><a href="#display-current-established-VPN-connections" class="headerlink" title="display current established VPN connections:"></a>display current established VPN connections:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it ipsec-vpn-server ipsec whack --trafficstatus</span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="How-to-setting-on-mac"><a href="#How-to-setting-on-mac" class="headerlink" title="How to setting on mac ?"></a>How to setting on mac ?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VPN_USER=username</span><br></pre></td></tr></table></figure>
+<img src="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/1.png" title="username">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VPN_PASSWORD=userpwd</span><br><span class="line">VPN_IPSEC_PSK=someword_pre_shared_key</span><br></pre></td></tr></table></figure>
+<img src="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/2.png" title="VPN_IPSEC_PSK and VPN_PASSWORD">
+<hr>
+<p>reference :<br><a href="https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README.md" target="_blank" rel="noopener">docker-ipsec-vpn-server</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/" data-id="cjyyg0b3i0018110m73nxaifd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/centos/">centos</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019-02-24-How-create-proxy-table-on-vue-cli-3-when-need-test-with-API/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          How create proxy table on vue cli 3 when need test with API ?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">How Make macOS 10.14 Mojave USB Boot Installer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/centos/" style="font-size: 15px;">centos</a> <a href="/tags/continuous-delivery/" style="font-size: 10px;">continuous-delivery</a> <a href="/tags/continuous-integration/" style="font-size: 12.5px;">continuous-integration</a> <a href="/tags/dns/" style="font-size: 10px;">dns</a> <a href="/tags/docker/" style="font-size: 15px;">docker</a> <a href="/tags/git/" style="font-size: 12.5px;">git</a> <a href="/tags/language/" style="font-size: 12.5px;">language</a> <a href="/tags/linux/" style="font-size: 17.5px;">linux</a> <a href="/tags/nginx/" style="font-size: 12.5px;">nginx</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/osx/" style="font-size: 20px;">osx</a> <a href="/tags/postman/" style="font-size: 17.5px;">postman</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/vscode/" style="font-size: 10px;">vscode</a> <a href="/tags/vue/" style="font-size: 12.5px;">vue</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019-0728-1712-Run-travis-ci-tool-on-docker-without-install-at-your-host-system/">Run travis-ci tool on docker without install at your host system</a>
+          </li>
+        
+          <li>
+            <a href="/2019-0413-2311-How-to-capture-youtube-livestream-to-mp4-and-convert-it-to-mp3-on-mac/">How to capture youtube livestream to mp4 (or mp3) on mac</a>
+          </li>
+        
+          <li>
+            <a href="/2019-02-24-How-create-proxy-table-on-vue-cli-3-when-need-test-with-API/">How create proxy table on vue cli 3 when need test with API ?</a>
+          </li>
+        
+          <li>
+            <a href="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/">Use docker build a VPN server for mac</a>
+          </li>
+        
+          <li>
+            <a href="/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/">How Make macOS 10.14 Mojave USB Boot Installer</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 wico wen<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

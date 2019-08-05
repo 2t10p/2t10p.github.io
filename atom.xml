@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Wico&#39;s logbook</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://wicowen.github.io/"/>
+  <updated>2019-07-28T09:12:03.000Z</updated>
+  <id>https://wicowen.github.io/</id>
+  
+  <author>
+    <name>wico wen</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Run travis-ci tool on docker without install at your host system</title>
+    <link href="https://wicowen.github.io/2019-0728-1712-Run-travis-ci-tool-on-docker-without-install-at-your-host-system/"/>
+    <id>https://wicowen.github.io/2019-0728-1712-Run-travis-ci-tool-on-docker-without-install-at-your-host-system/</id>
+    <published>2019-07-28T09:12:03.000Z</published>
+    <updated>2019-07-28T09:12:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>when use travis-ci to do auto deploy,<br>some time you want <code>crypto some string</code> like s3 bucket key … etc<br>&nbsp;<br>travis ci provide a tools <a href="https://github.com/travis-ci/travis.rb#readme" target="_blank" rel="noopener">Travis Client</a> that can let you encrypt data<br>but need install ruby &amp; gem to your global system, really dont like this way.<br>&nbsp;<br>so i use docker to do it.<br>&nbsp;<br><a id="more"></a></p><ol><li>start a ruby contener &amp; install travis tools<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ docker pull ruby</span><br><span class="line">$ docker run -ti --rm ruby bash</span><br></pre></td></tr></table></figure></li></ol><p>&nbsp;</p><ol start="2"><li>install travis tools &amp; login<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gem install travis</span><br><span class="line">$ travis login --pro</span><br></pre></td></tr></table></figure></li></ol><p>&nbsp;</p><ol start="3"><li>encrypt data what you want, only can use on specific github repo<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ travis encrypt &quot;some_string_you_want_encrypt&quot; -r wicowen/demo-repo</span><br></pre></td></tr></table></figure></li></ol><p>&nbsp;</p><ol start="4"><li>paste result to <code>travis.yml</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">notifications:</span><br><span class="line">  slack:</span><br><span class="line">    rooms:</span><br><span class="line">      secure: &quot;JRPbbsQ...............=&quot;</span><br><span class="line">    on_success: always</span><br><span class="line">    on_failure: always</span><br></pre></td></tr></table></figure></li></ol><p>&nbsp;<br>&nbsp;<br>ref:<br><a href="https://github.com/travis-ci/travis.rb#readme" target="_blank" rel="noopener">https://github.com/travis-ci/travis.rb#readme</a><br><a href="https://docs.travis-ci.com/user/encryption-keys/" target="_blank" rel="noopener">https://docs.travis-ci.com/user/encryption-keys/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;when use travis-ci to do auto deploy,&lt;br&gt;some time you want &lt;code&gt;crypto some string&lt;/code&gt; like s3 bucket key … etc&lt;br&gt;&amp;nbsp;&lt;br&gt;travis ci provide a tools &lt;a href=&quot;https://github.com/travis-ci/travis.rb#readme&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Travis Client&lt;/a&gt; that can let you encrypt data&lt;br&gt;but need install ruby &amp;amp; gem to your global system, really dont like this way.&lt;br&gt;&amp;nbsp;&lt;br&gt;so i use docker to do it.&lt;br&gt;&amp;nbsp;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://wicowen.github.io/tags/docker/"/>
+    
+      <category term="continuous-integration" scheme="https://wicowen.github.io/tags/continuous-integration/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to capture youtube livestream to mp4 (or mp3) on mac</title>
+    <link href="https://wicowen.github.io/2019-0413-2311-How-to-capture-youtube-livestream-to-mp4-and-convert-it-to-mp3-on-mac/"/>
+    <id>https://wicowen.github.io/2019-0413-2311-How-to-capture-youtube-livestream-to-mp4-and-convert-it-to-mp3-on-mac/</id>
+    <published>2019-04-13T15:11:03.000Z</published>
+    <updated>2019-04-13T15:11:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li><p>install <a href="https://docs.brew.sh/Installation" target="_blank" rel="noopener">homebrew</a><br>&nbsp;</p></li><li><p>use brew install streamlink</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install streamlink</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;</p><ul><li>download youtube livestream<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ streamlink --hls-live-restart -o &apos;out.m3u8&apos; &apos;https://www.youtube.com/watch?v=xxxxx&apos; best</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;<br><a id="more"></a></p><ul><li>use brew install ffmpeg<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install ffmpeg</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;</p><ul><li>convert hls(m3u8) to mp4<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i in.m3u8 -acodec copy -bsf:a aac_adtstoasc -vcodec copy out.mp4</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;</p><ul><li>convert mp4 to mp3<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -i out.mp4 -q:a 0 -map a out.mp3</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;</p><ul><li>crop mp3 from 60s to 60+120s<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ffmpeg -ss 60 -t 120 -i in.mp3 -acodec copy out.mp3</span><br></pre></td></tr></table></figure></li></ul><p>&nbsp;</p><p>ref:<br><a href="https://streamlink.github.io/cli.html" target="_blank" rel="noopener">https://streamlink.github.io/cli.html</a><br><a href="https://github.com/ytdl-org/youtube-dl/issues/11618" target="_blank" rel="noopener">https://github.com/ytdl-org/youtube-dl/issues/11618</a><br><a href="https://stackoverflow.com/questions/33108105/converting-an-hls-m3u8-to-mp4" target="_blank" rel="noopener">https://stackoverflow.com/questions/33108105/converting-an-hls-m3u8-to-mp4</a><br><a href="https://superuser.com/questions/332347/how-can-i-convert-mp4-video-to-mp3-audio-with-ffmpeg" target="_blank" rel="noopener">https://superuser.com/questions/332347/how-can-i-convert-mp4-video-to-mp3-audio-with-ffmpeg</a><br><a href="https://stackoverflow.com/questions/1390731/how-to-crop-a-mp3-from-x-to-xn-using-ffmpeg" target="_blank" rel="noopener">https://stackoverflow.com/questions/1390731/how-to-crop-a-mp3-from-x-to-xn-using-ffmpeg</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;install &lt;a href=&quot;https://docs.brew.sh/Installation&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;homebrew&lt;/a&gt;&lt;br&gt;&amp;nbsp;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;use brew install streamlink&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ brew install streamlink&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;download youtube livestream&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ streamlink --hls-live-restart -o &amp;apos;out.m3u8&amp;apos; &amp;apos;https://www.youtube.com/watch?v=xxxxx&amp;apos; best&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How create proxy table on vue cli 3 when need test with API ?</title>
+    <link href="https://wicowen.github.io/2019-02-24-How-create-proxy-table-on-vue-cli-3-when-need-test-with-API/"/>
+    <id>https://wicowen.github.io/2019-02-24-How-create-proxy-table-on-vue-cli-3-when-need-test-with-API/</id>
+    <published>2019-02-24T08:32:17.000Z</published>
+    <updated>2019-02-24T08:32:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>if you use vue cli 3 to build a project,<br>then when you need access api from other domain,<br>how use proxy table local mode ?</p><p>on this case<br>i will demo a local proxy api<br>that will redirect all my<br><code>http://localhost/api</code> request<br>to<br><code>https://api.somewhere.com/v2/api</code> this really api server<br><a id="more"></a><br>&nbsp;<br>&nbsp;</p><p>####1. set your variable into .env file<br>.env.development.local<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VUE_APP_API_URL=/api</span><br></pre></td></tr></table></figure></p><p>&nbsp;</p><p>####2. set proxy config<br>vue.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  devServer: &#123;</span><br><span class="line">    proxy: &#123;</span><br><span class="line">      &apos;/api&apos;: &#123;</span><br><span class="line">        target: &apos;https://api.somewhere.com&apos;,</span><br><span class="line">        secure: true,</span><br><span class="line">        pathRewrite: &#123;</span><br><span class="line">          &apos;^/api&apos;: &apos;/v2/api&apos;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&nbsp;</p><p>####3. use axios call api<br>api/index.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">import axios from &apos;axios&apos;</span><br><span class="line"></span><br><span class="line">export const getResult = (payload) =&gt; &#123;</span><br><span class="line">  let token = &apos;your auth token&apos;</span><br><span class="line">  let headers = &#123;</span><br><span class="line">    &apos;Authorization&apos;: `Bearer $&#123;token&#125;`,</span><br><span class="line">    &apos;Cache-Control&apos;: &apos;no-cache&apos;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  const searchResult = axios.create(&#123;</span><br><span class="line">    baseURL: process.env.VUE_APP_API_URL,</span><br><span class="line">    headers: headers</span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  return searchResult.get(`/search`, &#123; params: payload &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>&nbsp;<br>&nbsp;</p><p>ref:<br><a href="https://webpack.js.org/configuration/dev-server/#devserverproxy" target="_blank" rel="noopener">https://webpack.js.org/configuration/dev-server/#devserverproxy</a><br><a href="https://github.com/chimurai/http-proxy-middleware#options" target="_blank" rel="noopener">https://github.com/chimurai/http-proxy-middleware#options</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;if you use vue cli 3 to build a project,&lt;br&gt;then when you need access api from other domain,&lt;br&gt;how use proxy table local mode ?&lt;/p&gt;
+&lt;p&gt;on this case&lt;br&gt;i will demo a local proxy api&lt;br&gt;that will redirect all my&lt;br&gt;&lt;code&gt;http://localhost/api&lt;/code&gt; request&lt;br&gt;to&lt;br&gt;&lt;code&gt;https://api.somewhere.com/v2/api&lt;/code&gt; this really api server&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="vue" scheme="https://wicowen.github.io/tags/vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Use docker build a VPN server for mac</title>
+    <link href="https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/"/>
+    <id>https://wicowen.github.io/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/</id>
+    <published>2019-02-12T14:31:07.000Z</published>
+    <updated>2019-02-12T14:31:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="1-create-vpn-setting"><a href="#1-create-vpn-setting" class="headerlink" title="1. create vpn setting"></a>1. create vpn setting</h4><p>$ vim ~/workspace/docker/vpn/env</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">VPN_IPSEC_PSK=someword_pre_shared_key</span><br><span class="line">VPN_USER=username</span><br><span class="line">VPN_PASSWORD=userpwd</span><br></pre></td></tr></table></figure><a id="more"></a><hr><h4 id="2-load-the-IPsec-af-key-kernel-module-on-the-Docker-host"><a href="#2-load-the-IPsec-af-key-kernel-module-on-the-Docker-host" class="headerlink" title="2. load the IPsec af_key kernel module on the Docker host."></a>2. load the IPsec <code>af_key</code> kernel module on the Docker host.</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo modprobe af_key</span><br></pre></td></tr></table></figure><h4 id="2-1-load-it-on-startup-centos"><a href="#2-1-load-it-on-startup-centos" class="headerlink" title="2.1 load it on startup (centos)"></a>2.1 load it on startup (centos)</h4><p>$ vim /etc/modules-load.d/af_key.conf<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Load af_key at boot</span><br><span class="line">af_key</span><br></pre></td></tr></table></figure></p><h5 id="To-ensure-that-this-kernel-module-is-loaded-on-boot-please-refer-to-Ubuntu-Debian-CentOS-6-CentOS-7-Fedora-and-CoreOS"><a href="#To-ensure-that-this-kernel-module-is-loaded-on-boot-please-refer-to-Ubuntu-Debian-CentOS-6-CentOS-7-Fedora-and-CoreOS" class="headerlink" title="* To ensure that this kernel module is loaded on boot, please refer to: Ubuntu/Debian, CentOS 6, CentOS 7, Fedora and CoreOS."></a>* To ensure that this kernel module is loaded on boot, please refer to: <a href="https://help.ubuntu.com/community/Loadable_Modules" target="_blank" rel="noopener">Ubuntu/Debian</a>, <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/sec-persistent_module_loading" target="_blank" rel="noopener">CentOS 6</a>, <a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Kernel_Administration_Guide/sec-Persistent_Module_Loading.html" target="_blank" rel="noopener">CentOS 7</a>, <a href="https://docs.fedoraproject.org/en-US/fedora/f28/system-administrators-guide/kernel-module-driver-configuration/Working_with_Kernel_Modules/index.html#sec-Persistent_Module_Loading" target="_blank" rel="noopener">Fedora</a> and <a href="https://coreos.com/os/docs/latest/other-settings.html" target="_blank" rel="noopener">CoreOS</a>.</h5><hr><h4 id="3-Create-a-new-Docker-container-from-this-image-replace-vpn-env-with-your-own-env-file"><a href="#3-Create-a-new-Docker-container-from-this-image-replace-vpn-env-with-your-own-env-file" class="headerlink" title="3. Create a new Docker container from this image (replace ~/.../vpn/env with your own env file):"></a>3. Create a new Docker container from this image (replace <code>~/.../vpn/env</code> with your own <code>env</code> file):</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ docker run \</span><br><span class="line">    --name ipsec-vpn-server \</span><br><span class="line">    --env-file ~/workspace/docker/vpn/env \</span><br><span class="line">    --restart=always \</span><br><span class="line">    -p 500:500/udp \</span><br><span class="line">    -p 4500:4500/udp \</span><br><span class="line">    -v /lib/modules:/lib/modules:ro \</span><br><span class="line">    -d --privileged \</span><br><span class="line">    hwdsl2/ipsec-vpn-server</span><br></pre></td></tr></table></figure><hr><h4 id="View-log"><a href="#View-log" class="headerlink" title="View log"></a>View log</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker logs ipsec-vpn-server</span><br></pre></td></tr></table></figure><h4 id="Check-server-status"><a href="#Check-server-status" class="headerlink" title="Check server status"></a>Check server status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it ipsec-vpn-server ipsec status</span><br></pre></td></tr></table></figure><h4 id="display-current-established-VPN-connections"><a href="#display-current-established-VPN-connections" class="headerlink" title="display current established VPN connections:"></a>display current established VPN connections:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker exec -it ipsec-vpn-server ipsec whack --trafficstatus</span><br></pre></td></tr></table></figure><hr><h4 id="How-to-setting-on-mac"><a href="#How-to-setting-on-mac" class="headerlink" title="How to setting on mac ?"></a>How to setting on mac ?</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">VPN_USER=username</span><br></pre></td></tr></table></figure><img src="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/1.png" title="username"><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">VPN_PASSWORD=userpwd</span><br><span class="line">VPN_IPSEC_PSK=someword_pre_shared_key</span><br></pre></td></tr></table></figure><img src="/2019-0212-2231-Use-docker-build-a-VPN-server-for-mac/2.png" title="VPN_IPSEC_PSK and VPN_PASSWORD"><hr><p>reference :<br><a href="https://github.com/hwdsl2/docker-ipsec-vpn-server/blob/master/README.md" target="_blank" rel="noopener">docker-ipsec-vpn-server</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;1-create-vpn-setting&quot;&gt;&lt;a href=&quot;#1-create-vpn-setting&quot; class=&quot;headerlink&quot; title=&quot;1. create vpn setting&quot;&gt;&lt;/a&gt;1. create vpn setting&lt;/h4&gt;&lt;p&gt;$ vim ~/workspace/docker/vpn/env&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;VPN_IPSEC_PSK=someword_pre_shared_key&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VPN_USER=username&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;VPN_PASSWORD=userpwd&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://wicowen.github.io/tags/docker/"/>
+    
+      <category term="centos" scheme="https://wicowen.github.io/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How Make macOS 10.14 Mojave USB Boot Installer</title>
+    <link href="https://wicowen.github.io/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/"/>
+    <id>https://wicowen.github.io/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/</id>
+    <published>2018-12-07T06:00:00.000Z</published>
+    <updated>2018-12-07T06:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Finally i update my mac to 10.14<br>and i use that image make a USB bootable install loader.</p><h2 id="Here-is-the-step"><a href="#Here-is-the-step" class="headerlink" title="Here is the step"></a>Here is the step</h2><ol start="0"><li>[ download / update ] Mojave from Mac app stroe<img src="/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/1.png" title="download it"></li></ol><a id="more"></a><ol><li><p>when downloa was ready and show this window, <code>DO NOT</code> Click <code>continue</code>.</p><img src="/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/2.png" title="Mojave install screen"></li><li><p>open finder, and find out your “applications” directory,<br>now you can see the file “Install macOS Mojave.app”.</p><img src="/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/3.png" title="copy to your directory"></li><li><p>backup to your other directory</p></li><li><p>Plug USB driver, and format it</p></li><li><p>Open terminal and paste the commend on below<br>and replace {xxxx} to your path.</p></li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo /&#123;File Path&#125;/Install\ macOS\ Mojave.app/ \</span><br><span class="line">Contents/Resources/createinstallmedia \</span><br><span class="line">--volume /Volumes/&#123;USB Name&#125;/ \</span><br><span class="line">--applicationpath /&#123;File Path&#125;/Install\ macOS\ Mojave.app/ \</span><br><span class="line">--nointeraction</span><br></pre></td></tr></table></figure><ol start="6"><li>then system will start make usb bootable install leader</li></ol><h2 id="How-to-use-it"><a href="#How-to-use-it" class="headerlink" title="How to use it?"></a>How to use it?</h2><ol start="0"><li><p>when mac is power off</p></li><li><p>plug usb driver</p></li><li><p>hold <code>option</code> key</p></li><li><p>power on</p></li><li><p>select the USB install leader to boot up</p></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Finally i update my mac to 10.14&lt;br&gt;and i use that image make a USB bootable install loader.&lt;/p&gt;
+&lt;h2 id=&quot;Here-is-the-step&quot;&gt;&lt;a href=&quot;#Here-is-the-step&quot; class=&quot;headerlink&quot; title=&quot;Here is the step&quot;&gt;&lt;/a&gt;Here is the step&lt;/h2&gt;&lt;ol start=&quot;0&quot;&gt;
+&lt;li&gt;[ download / update ] Mojave from Mac app stroe&lt;img src=&quot;/2018-1207-1400-How-Make-macOS-10-14-Mojave-USB-Boot-Installer/1.png&quot; title=&quot;download it&quot;&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How let vscode show hidden characters ? (tab,space...)</title>
+    <link href="https://wicowen.github.io/2018-0508-2330-How-Let-vscode-show-hidden-characters-tab-space/"/>
+    <id>https://wicowen.github.io/2018-0508-2330-How-Let-vscode-show-hidden-characters-tab-space/</id>
+    <published>2018-05-08T15:30:00.000Z</published>
+    <updated>2018-05-08T15:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>i like set editer default show the hidden characters to a symbol,<br>because that can avoid when i copy a static demo into my code,<br>and that have a lot tab.</li></ul><a id="more"></a><ul><li><p>go to vscode preferences use “cmd + ,” hotkey.</p></li><li><p>add this setting to option</p></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.renderWhitespace&quot;: &quot;all&quot;,</span><br></pre></td></tr></table></figure><p>reference :<br><a href="https://github.com/Microsoft/vscode/issues/18282" target="_blank" rel="noopener">github vscode issue</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;i like set editer default show the hidden characters to a symbol,&lt;br&gt;because that can avoid when i copy a static demo into my code,&lt;br&gt;and that have a lot tab.&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="vscode" scheme="https://wicowen.github.io/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Enable AAC/apt-X Audio Codec for your bluetooth headphones at macOS</title>
+    <link href="https://wicowen.github.io/2018-0429-1830-Enable-AAC-apt-X-Audio-Codec-for-your-bluetooth-headphones-at-macOS/"/>
+    <id>https://wicowen.github.io/2018-0429-1830-Enable-AAC-apt-X-Audio-Codec-for-your-bluetooth-headphones-at-macOS/</id>
+    <published>2018-04-29T10:30:00.000Z</published>
+    <updated>2018-04-29T10:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>at macOS usually your headphone bluetooth codec is not active,<br>(only enable when you are use apple’s product)</p><p>how to check it ?</p><ol><li><p>start a player<br>(because codec only active when headphone playing sound)</p></li><li><p>hold the “option” key and click bluetooth icon on system bar</p></li><li><p>check what the active codec status now</p></li></ol><img src="/2018-0429-1830-Enable-AAC-apt-X-Audio-Codec-for-your-bluetooth-headphones-at-macOS/1.png" title="codec not active"><a id="more"></a><p>if it is disable</p><p>you can use this command to enable it</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write bluetoothaudiod &quot;Enable AptX codec&quot; -bool true </span><br><span class="line">sudo defaults write bluetoothaudiod &quot;Enable AAC codec&quot; -bool true</span><br></pre></td></tr></table></figure><p>and restart your bluetooth, now it should work<br><img src="/2018-0429-1830-Enable-AAC-apt-X-Audio-Codec-for-your-bluetooth-headphones-at-macOS/2.png" title="codec not active"></p><p>if you wanna set back to default just set true to false</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write bluetoothaudiod &quot;Enable AptX codec&quot; -bool false </span><br><span class="line">sudo defaults write bluetoothaudiod &quot;Enable AAC codec&quot; -bool false</span><br></pre></td></tr></table></figure><p>reference :<br><a href="https://www.macrumors.com/how-to/enable-aptx-aac-bluetooth-audio-codecs-macos/" target="_blank" rel="noopener">macrumors</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;at macOS usually your headphone bluetooth codec is not active,&lt;br&gt;(only enable when you are use apple’s product)&lt;/p&gt;
+&lt;p&gt;how to check it ?&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;start a player&lt;br&gt;(because codec only active when headphone playing sound)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;hold the “option” key and click bluetooth icon on system bar&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;check what the active codec status now&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&quot;/2018-0429-1830-Enable-AAC-apt-X-Audio-Codec-for-your-bluetooth-headphones-at-macOS/1.png&quot; title=&quot;codec not active&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Postman - validate your api response array data use chai js</title>
+    <link href="https://wicowen.github.io/2018-0427-2330-Postman-validate-your-api-data-use-chai-js/"/>
+    <id>https://wicowen.github.io/2018-0427-2330-Postman-validate-your-api-data-use-chai-js/</id>
+    <published>2018-04-27T15:30:00.000Z</published>
+    <updated>2018-04-27T15:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Chai is a BDD / TDD assertion library ,<br>that let you can write readable js test,<br>like this :</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">expect(2).to.equal(2); </span><br><span class="line">expect(&apos;foo&apos;).to.have.lengthOf(3); /</span><br><span class="line">expect(resJson.total_count).to.be.an(&apos;number&apos;);</span><br><span class="line">expect(resJson.data.length).to.be.above(0);</span><br></pre></td></tr></table></figure><p>and postman support this library,<br>so here is a sample test script,<br>that will validate :</p><ol><li>important column not null</li><li>iterator array check have data </li></ol><a id="more"></a><img src="/2018-0427-2330-Postman-validate-your-api-data-use-chai-js/1.png" title="api test demo image"><p>here is the code</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pm.test(&quot;response data not null&quot;, function () &#123;</span><br><span class="line">    var jsonData = pm.response.json();</span><br><span class="line"></span><br><span class="line">    pm.expect(jsonData.page).to.be.an(&apos;number&apos;);</span><br><span class="line">    pm.expect(jsonData.per_page).to.be.an(&apos;number&apos;);</span><br><span class="line">    pm.expect(jsonData.total_count).to.be.an(&apos;number&apos;);</span><br><span class="line">    pm.expect(jsonData.data.length).to.be.above(0);</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">pm.test(&quot;response data have id&quot;, function () &#123;</span><br><span class="line">    var jsonData = pm.response.json();</span><br><span class="line"></span><br><span class="line">    jsonData.data.forEach(function(element) &#123;</span><br><span class="line">        pm.expect(element.id).to.be.an(&apos;string&apos;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    if (jsonData.data.length &gt; 0) &#123;</span><br><span class="line">        pm.environment.set(&quot;video_id&quot;, jsonData.data[0].id);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Chai is a BDD / TDD assertion library ,&lt;br&gt;that let you can write readable js test,&lt;br&gt;like this :&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;expect(2).to.equal(2); &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;expect(&amp;apos;foo&amp;apos;).to.have.lengthOf(3); /&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;expect(resJson.total_count).to.be.an(&amp;apos;number&amp;apos;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;expect(resJson.data.length).to.be.above(0);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;and postman support this library,&lt;br&gt;so here is a sample test script,&lt;br&gt;that will validate :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;important column not null&lt;/li&gt;
+&lt;li&gt;iterator array check have data &lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="postman" scheme="https://wicowen.github.io/tags/postman/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How to keep your github fork repo up to date</title>
+    <link href="https://wicowen.github.io/2018-0419-1130-How-to-keep-your-github-fork-repo-up-to-date/"/>
+    <id>https://wicowen.github.io/2018-0419-1130-How-to-keep-your-github-fork-repo-up-to-date/</id>
+    <published>2018-04-19T03:30:00.000Z</published>
+    <updated>2018-04-19T03:30:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-Clone-your-fork"><a href="#1-Clone-your-fork" class="headerlink" title="1. Clone your fork:"></a>1. Clone your fork:</h3><pre><code>git clone git@github.com:YOUR-USERNAME/YOUR-FORKED-REPO.git</code></pre><h3 id="2-Add-remote-from-original-repository-in-your-forked-repository"><a href="#2-Add-remote-from-original-repository-in-your-forked-repository" class="headerlink" title="2. Add remote from original repository in your forked repository:"></a>2. Add remote from original repository in your forked repository:</h3><pre><code>cd into/cloned/fork-repogit remote add upstream git://github.com/ORIGINAL-DEV-USERNAME/REPO-YOU-FORKED-FROM.gitgit fetch upstream</code></pre><h3 id="3-Updating-your-fork-from-original-repo-to-keep-up-with-their-changes"><a href="#3-Updating-your-fork-from-original-repo-to-keep-up-with-their-changes" class="headerlink" title="3. Updating your fork from original repo to keep up with their changes:"></a>3. Updating your fork from original repo to keep up with their changes:</h3><pre><code>git pull upstream master</code></pre><p>reference :<br><a href="https://gist.github.com/CristinaSolana/1885435" target="_blank" rel="noopener">https://gist.github.com/CristinaSolana/1885435</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;1-Clone-your-fork&quot;&gt;&lt;a href=&quot;#1-Clone-your-fork&quot; class=&quot;headerlink&quot; title=&quot;1. Clone your fork:&quot;&gt;&lt;/a&gt;1. Clone your fork:&lt;/h3&gt;&lt;pre&gt;&lt;cod
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="https://wicowen.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Build Vue website that use Travis CI doing test and deploy to VPS</title>
+    <link href="https://wicowen.github.io/2018-0418-2330-Build-Vue-website-that-use-Travis-CI-doing-test-and-deploy-to-VPS/"/>
+    <id>https://wicowen.github.io/2018-0418-2330-Build-Vue-website-that-use-Travis-CI-doing-test-and-deploy-to-VPS/</id>
+    <published>2018-04-18T15:30:00.000Z</published>
+    <updated>2018-04-20T03:16:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>i build a side project use vue cli</p><p>that can easily create a basic frontend web site<br>with alot morden tools (js lint, unit test, e2e test … etc)</p><p>here is some note for trying integration whole project</p><p>the workflow is</p><ol><li><p>send a commit to github repo</p></li><li><p>travis-ci get the repo update then start build task</p></li><li><p>after task done without error</p></li><li><p>run deploy shell,</p></li><li><p>login to vps server use encrypted ssh key</p></li><li><p>push local tested repo to vps</p></li></ol><a id="more"></a><p>reference :<br>Deploy static sites to Digital Ocean with Travis CI<br><a href="https://monicalent.com/blog/2017/12/21/deploy-static-sites-digital-ocean-travis/" target="_blank" rel="noopener">https://monicalent.com/blog/2017/12/21/deploy-static-sites-digital-ocean-travis/</a><br><a href="https://medium.com/@tibotiber/deployment-of-static-websites-to-digital-ocean-using-travisci-957e6e0f1f9d" target="_blank" rel="noopener">https://medium.com/@tibotiber/deployment-of-static-websites-to-digital-ocean-using-travisci-957e6e0f1f9d</a><br><a href="https://kjaer.io/travis/" target="_blank" rel="noopener">https://kjaer.io/travis/</a></p><p>Auto Authorize SSH Auth Requests on Travis CI<br><a href="https://stackoverflow.com/questions/16638573/auto-authorize-ssh-auth-requests-on-travis-ci" target="_blank" rel="noopener">https://stackoverflow.com/questions/16638573/auto-authorize-ssh-auth-requests-on-travis-ci</a></p><p>Travis CI skip_cleanup<br><a href="https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup" target="_blank" rel="noopener">https://docs.travis-ci.com/user/deployment#Uploading-Files-and-skip_cleanup</a></p><p>Karma - change to chrome headless<br><a href="https://developers.google.com/web/updates/2017/06/headless-karma-mocha-chai" target="_blank" rel="noopener">https://developers.google.com/web/updates/2017/06/headless-karma-mocha-chai</a><br><a href="http://karma-runner.github.io/0.13/config/browsers.html" target="_blank" rel="noopener">http://karma-runner.github.io/0.13/config/browsers.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;i build a side project use vue cli&lt;/p&gt;
+&lt;p&gt;that can easily create a basic frontend web site&lt;br&gt;with alot morden tools (js lint, unit test, e2e test … etc)&lt;/p&gt;
+&lt;p&gt;here is some note for trying integration whole project&lt;/p&gt;
+&lt;p&gt;the workflow is&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;send a commit to github repo&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;travis-ci get the repo update then start build task&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;after task done without error&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;run deploy shell,&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;login to vps server use encrypted ssh key&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;push local tested repo to vps&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://wicowen.github.io/tags/nginx/"/>
+    
+      <category term="centos" scheme="https://wicowen.github.io/tags/centos/"/>
+    
+      <category term="vue" scheme="https://wicowen.github.io/tags/vue/"/>
+    
+      <category term="continuous-integration" scheme="https://wicowen.github.io/tags/continuous-integration/"/>
+    
+      <category term="continuous-delivery" scheme="https://wicowen.github.io/tags/continuous-delivery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Add second subtitle for your Netflix</title>
+    <link href="https://wicowen.github.io/2018-0404-1330-Add-second-subtitle-for-your-Netflix/"/>
+    <id>https://wicowen.github.io/2018-0404-1330-Add-second-subtitle-for-your-Netflix/</id>
+    <published>2018-04-04T05:30:00.000Z</published>
+    <updated>2018-04-10T03:20:01.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Netflix now have “Friends” in list,</p><p>i usually watch this to training my listen skill,</p><p>but sometime, when i need check a not sure word,</p><p>i need :</p><ol><li><p>pause video</p></li><li><p>switch subtitle to english look what he say</p></li><li><p>switch back to chinese</p></li></ol><p>that was annoying.</p><p>until i found a chrome/firefox plugin <a href="https://github.com/dannvix/NflxMultiSubs" target="_blank" rel="noopener">NflxMultiSubs</a></p><a id="more"></a><p>that plugin can let you show two subtitle at sometime.</p><img src="/2018-0404-1330-Add-second-subtitle-for-your-Netflix/2.png" title="Friends use two subtitles"><p>it is easy install,</p><p>just go his <a href="https://github.com/dannvix/NflxMultiSubs" target="_blank" rel="noopener">repo</a></p><p>click the plugin icon what browser you are using<br><img src="/2018-0404-1330-Add-second-subtitle-for-your-Netflix/1.png" title="Plugin icon"></p><p>after install, reopen it and enjoy it.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Netflix now have “Friends” in list,&lt;/p&gt;
+&lt;p&gt;i usually watch this to training my listen skill,&lt;/p&gt;
+&lt;p&gt;but sometime, when i need check a not sure word,&lt;/p&gt;
+&lt;p&gt;i need :&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;pause video&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;switch subtitle to english look what he say&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;switch back to chinese&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;that was annoying.&lt;/p&gt;
+&lt;p&gt;until i found a chrome/firefox plugin &lt;a href=&quot;https://github.com/dannvix/NflxMultiSubs&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;NflxMultiSubs&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="language" scheme="https://wicowen.github.io/tags/language/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>iStat Menus alternative  for macOS 10.13 High Sierra</title>
+    <link href="https://wicowen.github.io/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/"/>
+    <id>https://wicowen.github.io/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/</id>
+    <published>2018-03-31T10:10:00.000Z</published>
+    <updated>2018-03-31T09:03:49.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>After update macOS to 10.13,</p><p>iStat Menus need upgrade or will keep crash when launch,</p><p>but iStat Menus 3 need pay to upgrade iStat Menus 4,</p><p>and not have any new feature i need.<br>(i only need memory and network tray on status bar)</p><p>so i find alternative software it call “MenuMeters”.</p><img src="/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/1.png" title="MenuMeters"><a id="more"></a><p>Setup</p><ol><li><p>download <a href="http://www.ragingmenace.com/software/menumeters/#download" target="_blank" rel="noopener">MenuMeters</a> from web and install it.</p></li><li><p>after install you can see the icon poped on “system preferences”</p><img src="/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/2.png" title="system preferences"></li><li><p>setting up what you want monitor</p></li></ol><img src="/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/3.png" title="memory config"><img src="/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/4.png" title="network config">]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;After update macOS to 10.13,&lt;/p&gt;
+&lt;p&gt;iStat Menus need upgrade or will keep crash when launch,&lt;/p&gt;
+&lt;p&gt;but iStat Menus 3 need pay to upgrade iStat Menus 4,&lt;/p&gt;
+&lt;p&gt;and not have any new feature i need.&lt;br&gt;(i only need memory and network tray on status bar)&lt;/p&gt;
+&lt;p&gt;so i find alternative software it call “MenuMeters”.&lt;/p&gt;
+&lt;img src=&quot;/2018-0331-1810-iStat-Menus-alternative-for-macOS-10-13-High-Sierra/1.png&quot; title=&quot;MenuMeters&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Install shadowsocks server in CentOS 7</title>
+    <link href="https://wicowen.github.io/2018-0331-1700-Install-shadowsocks-server-in-CentOS-7/"/>
+    <id>https://wicowen.github.io/2018-0331-1700-Install-shadowsocks-server-in-CentOS-7/</id>
+    <published>2018-03-31T09:00:00.000Z</published>
+    <updated>2019-08-05T13:34:09.092Z</updated>
+    
+    <content type="html"><![CDATA[<p>shadowsocks is an open-source encrypted proxy project,<br>usually use to pass GFA (Great Firewall of China)</p><a id="more"></a><ol><li><p>add repo to yum</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/yum.repos.d/</span><br><span class="line">curl -O https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo</span><br><span class="line">yum install -y shadowsocks-libev</span><br></pre></td></tr></table></figure></li><li><p>edit config</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$vim /etc/shadowsocks-libev/config.json</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;server&quot;: &quot;0.0.0.0&quot;,</span><br><span class="line">    &quot;server_port&quot;: 3389,</span><br><span class="line">    &quot;password&quot;: &quot;login_password&quot;,</span><br><span class="line">    &quot;method&quot;:&quot;aes-256-cfb&quot;,</span><br><span class="line">    &quot;mode&quot;: &quot;tcp_and_udp&quot;,</span><br><span class="line">    &quot;timeout&quot;:3600</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li><li><p>check config workfine</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-server -c /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure></li><li><p>start service<br>systemctl restart shadowsocks-libev<br>systemctl enable shadowsocks-libev</p></li><li><p>check log</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">journalctl -u shadowsocks-libev</span><br><span class="line">tail -f /var/log/messages</span><br><span class="line">tail -f /var/log/secure</span><br></pre></td></tr></table></figure></li></ol><ul><li>if get this message :<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-local: error while loading shared libraries: libmbedcrypto.so.0: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure></li></ul><p>install “mbedtls-devel”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ yum install mbedtls-devel</span><br><span class="line">$ cd /usr/lib64</span><br><span class="line">$ ls |grep mbed</span><br><span class="line">$ ln -sf libmbedcrypto.so.1 libmbedcrypto.so.0</span><br></pre></td></tr></table></figure></p><p>reference:<br><a href="https://zzz.buzz/zh/gfw/2017/08/14/install-shadowsocks-server-on-centos-7/" target="_blank" rel="noopener">https://zzz.buzz/zh/gfw/2017/08/14/install-shadowsocks-server-on-centos-7/</a><br><a href="https://github.com/shadowsocks/shadowsocks-libev/issues/1966" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-libev/issues/1966</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;shadowsocks is an open-source encrypted proxy project,&lt;br&gt;usually use to pass GFA (Great Firewall of China)&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://wicowen.github.io/tags/linux/"/>
+    
+      <category term="centos" scheme="https://wicowen.github.io/tags/centos/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Enable Let&#39;s encrypt wildcard certificate in CentOS 7</title>
+    <link href="https://wicowen.github.io/2018-0315-1400-Enable-Lets-encrypt-wildcard-certificate-in-CentOS-7/"/>
+    <id>https://wicowen.github.io/2018-0315-1400-Enable-Lets-encrypt-wildcard-certificate-in-CentOS-7/</id>
+    <published>2018-03-15T06:00:00.000Z</published>
+    <updated>2019-01-29T06:17:29.376Z</updated>
+    
+    <content type="html"><![CDATA[<p>Let’s encrypt was support wildcard certificate now,<br>trying update my development server to support it,<br>in this case server use <a href="https://github.com/certbot" target="_blank" rel="noopener">certbot</a>,<br>here is note for more detail.<br><a id="more"></a></p><ul><li><p>certbot version need &gt;= 0.22.0</p></li><li><p>you need admin permission that can modify dns config</p></li></ul><ol><li><p>check certbot version</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># certbot --version</span><br><span class="line"></span><br><span class="line">certbot 0.22.0</span><br></pre></td></tr></table></figure></li><li><p>run commend then add txt record to your domain and to prove you have own it.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#certbot -d *.wico.cc \</span><br><span class="line">--manual \</span><br><span class="line">--preferred-challenges \</span><br><span class="line">dns certonly \</span><br><span class="line">--server https://acme-v02.api.letsencrypt.org/directory</span><br></pre></td></tr></table></figure></li></ol><p>you will see the value that you need add to dns<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------------------------------------------</span><br><span class="line">Please deploy a DNS TXT record under the name</span><br><span class="line">_acme-challenge.wico.cc with the following value:</span><br><span class="line"></span><br><span class="line">PKNhsaOWpAUT-hLxoP1dNQum6in________________</span><br><span class="line"></span><br><span class="line">Before continuing, verify the record is deployed.</span><br><span class="line">-------------------------------------------------</span><br></pre></td></tr></table></figure></p><p>add value to your dns<br><img src="/2018-0315-1400-Enable-Lets-encrypt-wildcard-certificate-in-CentOS-7/1.png" title="image description"></p><p>BTW if you not have do this step you will get a error message blow this.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Client with the currently selected authenticator does not support</span><br><span class="line">any combination of challenges that will satisfy the CA.</span><br><span class="line">You may need to use an authenticator plugin that can do challenges over DNS.</span><br></pre></td></tr></table></figure></p><p>3.<br>setting up your wildcard domain<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># certbot \</span><br><span class="line">--authenticator standalone \</span><br><span class="line">--installer nginx \</span><br><span class="line">--pre-hook &quot;systemctl stop nginx.service&quot; \</span><br><span class="line">--post-hook &quot;systemctl start nginx.service&quot; \</span><br><span class="line">--server https://acme-v02.api.letsencrypt.org/directory</span><br></pre></td></tr></table></figure></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">Saving debug log to /var/log/letsencrypt/letsencrypt.log</span><br><span class="line">Plugins selected: Authenticator standalone, Installer nginx</span><br><span class="line">Starting new HTTPS connection (1): acme-v02.api.letsencrypt.org</span><br><span class="line">No names were found in your configuration files. Please enter in your domain</span><br><span class="line">name(s) (comma and/or space separated)  (Enter &apos;c&apos; to cancel): *.wico.cc</span><br><span class="line">Cert not yet due for renewal</span><br><span class="line"></span><br><span class="line">You have an existing certificate that has exactly the same domains or certificate name you requested and isn&apos;t close to expiry.</span><br><span class="line">(ref: /etc/letsencrypt/renewal/wico.cc.conf)</span><br><span class="line"></span><br><span class="line">What would you like to do?</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1: Attempt to reinstall this existing certificate</span><br><span class="line">2: Renew &amp; replace the cert (limit ~5 per 7 days)</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Select the appropriate number [1-2] then [enter] (press &apos;c&apos; to cancel): 1</span><br><span class="line">Keeping the existing certificate</span><br><span class="line"></span><br><span class="line">Which server blocks would you like to modify?</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1: File: /etc/nginx/nginx.conf</span><br><span class="line">Addresses: 80</span><br><span class="line">Names: localhost</span><br><span class="line">HTTPS: No</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Select the appropriate numbers separated by commas and/or spaces, or leave input</span><br><span class="line">blank to select all options shown (Enter &apos;c&apos; to cancel): 1</span><br><span class="line">Deploying Certificate to VirtualHost /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">Please choose whether or not to redirect HTTP traffic to HTTPS, removing HTTP access.</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1: No redirect - Make no further changes to the webserver configuration.</span><br><span class="line">2: Redirect - Make all requests redirect to secure HTTPS access. Choose this for</span><br><span class="line">new sites, or if you&apos;re confident your site works on HTTPS. You can undo this</span><br><span class="line">change by editing your web server&apos;s configuration.</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Select the appropriate number [1-2] then [enter] (press &apos;c&apos; to cancel): 2</span><br><span class="line"></span><br><span class="line">Which server blocks would you like to modify?</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">1: File: /etc/nginx/nginx.conf</span><br><span class="line">Addresses: 443 ssl, 80</span><br><span class="line">Names: localhost</span><br><span class="line">HTTPS: Yes</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Select the appropriate numbers separated by commas and/or spaces, or leave input</span><br><span class="line">blank to select all options shown (Enter &apos;c&apos; to cancel): 1</span><br><span class="line">Redirecting all traffic on port 80 to ssl in /etc/nginx/nginx.conf</span><br><span class="line"></span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line">Congratulations! You have successfully enabled https://*.wico.cc</span><br><span class="line"></span><br><span class="line">You should test your configuration at:</span><br><span class="line">https://www.ssllabs.com/ssltest/analyze.html?d=*.wico.cc</span><br><span class="line">-------------------------------------------------------------------------------</span><br><span class="line"></span><br><span class="line">IMPORTANT NOTES:</span><br><span class="line"> - Congratulations! Your certificate and chain have been saved at:</span><br><span class="line">   /etc/letsencrypt/live/wico.cc/fullchain.pem</span><br><span class="line">   Your key file has been saved at:</span><br><span class="line">   /etc/letsencrypt/live/wico.cc/privkey.pem</span><br><span class="line">   Your cert will expire on 2018-06-13. To obtain a new or tweaked</span><br><span class="line">   version of this certificate in the future, simply run certbot again</span><br><span class="line">   with the &quot;certonly&quot; option. To non-interactively renew *all* of</span><br><span class="line">   your certificates, run &quot;certbot renew&quot;</span><br><span class="line"> - If you like Certbot, please consider supporting our work by:</span><br><span class="line"></span><br><span class="line">   Donating to ISRG / Let&apos;s Encrypt:   https://letsencrypt.org/donate</span><br><span class="line">   Donating to EFF:                    https://eff.org/donate-le</span><br></pre></td></tr></table></figure><p>now you can see your web site was change to wildcard certificate<br><img src="/2018-0315-1400-Enable-Lets-encrypt-wildcard-certificate-in-CentOS-7/2.png" title="image description"></p><p>how to review ?<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ systemctl stop nginx.service</span><br><span class="line">$ ps -aux | grep nginx</span><br><span class="line">$ kill &#123;pid&#125;</span><br><span class="line"></span><br><span class="line">$ certbot certificates</span><br><span class="line"></span><br><span class="line">$ certbot -d *.wico.cc --manual --preferred-challenges dns certonly --pre-hook &quot;systemctl stop nginx.service&quot; --post-hook &quot;systemctl start nginx.service&quot; --server https://acme-v02.api.letsencrypt.org/directory</span><br><span class="line"></span><br><span class="line">#update dns</span><br><span class="line">#wait 2 min</span><br><span class="line"></span><br><span class="line">$ certbot renew</span><br><span class="line"></span><br><span class="line">$ certbot certificates</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">$ systemctl stop nginx.service</span><br><span class="line">$ systemctl start nginx.service</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Let’s encrypt was support wildcard certificate now,&lt;br&gt;trying update my development server to support it,&lt;br&gt;in this case server use &lt;a href=&quot;https://github.com/certbot&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;certbot&lt;/a&gt;,&lt;br&gt;here is note for more detail.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://wicowen.github.io/tags/linux/"/>
+    
+      <category term="nginx" scheme="https://wicowen.github.io/tags/nginx/"/>
+    
+      <category term="dns" scheme="https://wicowen.github.io/tags/dns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Enable postman&#39;s DevTools to check more network detail</title>
+    <link href="https://wicowen.github.io/2017-0106-1831-Enable-postman-s-DevTools-to-check-network-detail/"/>
+    <id>https://wicowen.github.io/2017-0106-1831-Enable-postman-s-DevTools-to-check-network-detail/</id>
+    <published>2017-01-06T10:34:41.000Z</published>
+    <updated>2019-08-05T13:34:29.764Z</updated>
+    
+    <content type="html"><![CDATA[<ul><li>Type <code>chrome://flags</code> to your Chrome URL bar<a id="more"></a></li><li>Search for “packed applications”</li></ul><img src="/2017-0106-1831-Enable-postman-s-DevTools-to-check-network-detail/1.png"><ul><li>Enable the setting</li><li><p>Restart Chrome</p></li><li><p>Open postman, right click mouse to open inspect menu.</p></li></ul><img src="/2017-0106-1831-Enable-postman-s-DevTools-to-check-network-detail/2.png">]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;Type &lt;code&gt;chrome://flags&lt;/code&gt; to your Chrome URL bar
+    
+    </summary>
+    
+    
+      <category term="postman" scheme="https://wicowen.github.io/tags/postman/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How use postman send a file upload request ?</title>
+    <link href="https://wicowen.github.io/2017-0105-2007-How-use-postman-send-file-upload-request/"/>
+    <id>https://wicowen.github.io/2017-0105-2007-How-use-postman-send-file-upload-request/</id>
+    <published>2017-01-05T12:08:03.000Z</published>
+    <updated>2018-02-06T06:25:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2017-0105-2007-How-use-postman-send-file-upload-request/1.png">]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;img src=&quot;/2017-0105-2007-How-use-postman-send-file-upload-request/1.png&quot;&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="postman" scheme="https://wicowen.github.io/tags/postman/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How set global variable in Postman</title>
+    <link href="https://wicowen.github.io/2016-1207-2350-How-set-global-variable-in-Postman/"/>
+    <id>https://wicowen.github.io/2016-1207-2350-How-set-global-variable-in-Postman/</id>
+    <published>2016-12-07T15:48:47.000Z</published>
+    <updated>2018-03-15T08:08:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>when you useing postman to cook your api,<br>some time you need a variable to keep for next api.<br><a id="more"></a></p><p>example :<br>api create a new data and return id,<br>you wanna keep this id for update,<br>delete api to use.</p><p>add this code at postman’s tab</p><pre><code>//take response datavar jsonData = JSON.parse(responseBody);//set variablepostman.setEnvironmentVariable(&quot;acy_guid&quot;, jsonData.data.acy_guid);</code></pre><img src="/2016-1207-2350-How-set-global-variable-in-Postman/1.png" title="after send add request, set guid to variable"><img src="/2016-1207-2350-How-set-global-variable-in-Postman/1.png" title="use this variable in update body">]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;when you useing postman to cook your api,&lt;br&gt;some time you need a variable to keep for next api.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="postman" scheme="https://wicowen.github.io/tags/postman/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How Remap USB keyboard to Mac&#39;s layout in macOS Sierra</title>
+    <link href="https://wicowen.github.io/2016-1124-1940-How-Remap-USB-keyboard-to-Mac-Keyboard-in-macOS-Sierra/"/>
+    <id>https://wicowen.github.io/2016-1124-1940-How-Remap-USB-keyboard-to-Mac-Keyboard-in-macOS-Sierra/</id>
+    <published>2016-11-24T13:47:57.000Z</published>
+    <updated>2018-03-15T08:08:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>When use standard USB keyboard at macOS,<br>you can’t tune on the mac’s function key,<br>and ctrl with command need swap too.<br><a id="more"></a></p><p>now here have a app can solve this problem<br><a href="https://github.com/tekezo/Karabiner-Elements" target="_blank" rel="noopener">github.com/tekezo/Karabiner-Elements</a></p><p>after install</p><ul><li>here can tune the F1 ~ F12 to mac’s function key<img src="/2016-1124-1940-How-Remap-USB-keyboard-to-Mac-Keyboard-in-macOS-Sierra/2.png" title="set function key"></li></ul><!--more--><ul><li><p>swap key that you wanna remap</p><img src="/2016-1124-1940-How-Remap-USB-keyboard-to-Mac-Keyboard-in-macOS-Sierra/1.png" title="set key remap"></li><li><p>chose what device you wanna follow this rule.</p><img src="/2016-1124-1940-How-Remap-USB-keyboard-to-Mac-Keyboard-in-macOS-Sierra/3.png" title="select enable device"></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;When use standard USB keyboard at macOS,&lt;br&gt;you can’t tune on the mac’s function key,&lt;br&gt;and ctrl with command need swap too.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Use tab to quick switch buttons on osx dialog box</title>
+    <link href="https://wicowen.github.io/2016-1108-0914-Use-tab-to-quick-switch-buttons-on-Mac-OS-X-dialog-box/"/>
+    <id>https://wicowen.github.io/2016-1108-0914-Use-tab-to-quick-switch-buttons-on-Mac-OS-X-dialog-box/</id>
+    <published>2016-11-08T01:14:54.000Z</published>
+    <updated>2018-03-15T08:09:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Sometime you wanna close a file quickly,<br>and system will popup a dialog box to confirm what you want,<br>that cant use the TAB key to switch.<br><a id="more"></a></p><img src="/2016-1108-0914-Use-tab-to-quick-switch-buttons-on-Mac-OS-X-dialog-box/1.png" title="confirm dialog"><p>How enable this function ?</p><!--more--><ul><li>open “System Preferences” -&gt; Keyboard</li><li>check Full KeyBoard Access to “All controls”.</li></ul><img src="/2016-1108-0914-Use-tab-to-quick-switch-buttons-on-Mac-OS-X-dialog-box/2.png" title="confirm dialog">]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Sometime you wanna close a file quickly,&lt;br&gt;and system will popup a dialog box to confirm what you want,&lt;br&gt;that cant use the TAB key to switch.&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tmux scroll up at mac terminal</title>
+    <link href="https://wicowen.github.io/2016-0423-1552-Tmux-scroll-history-at-mac-terminal/"/>
+    <id>https://wicowen.github.io/2016-0423-1552-Tmux-scroll-history-at-mac-terminal/</id>
+    <published>2016-04-23T07:50:47.000Z</published>
+    <updated>2019-08-05T13:35:03.056Z</updated>
+    
+    <content type="html"><![CDATA[<p>at mac terminal,<br>when you at tmux,<br>cant use scroll up and down to watch scrollback buffer<br><a id="more"></a></p><p>How to fix ?<br>add this line to ~/.tmux.conf</p><pre><code>set -g terminal-overrides &apos;xterm*:smcup@:rmcup@&apos;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;at mac terminal,&lt;br&gt;when you at tmux,&lt;br&gt;cant use scroll up and down to watch scrollback buffer&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="linux" scheme="https://wicowen.github.io/tags/linux/"/>
+    
+      <category term="tmux" scheme="https://wicowen.github.io/tags/tmux/"/>
+    
+  </entry>
+  
+</feed>
