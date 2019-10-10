@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://wicowen.github.io/"/>
-  <updated>2019-07-28T09:12:03.000Z</updated>
+  <updated>2019-10-10T09:37:31.966Z</updated>
   <id>https://wicowen.github.io/</id>
   
   <author>
@@ -15,6 +15,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2019-1010-1511-How Make macOS 10.15 Catalina USB Boot Installer</title>
+    <link href="https://wicowen.github.io/2019-1010-1511-How-Make-macOS-10-15-Catalina-USB-Boot-Installer/"/>
+    <id>https://wicowen.github.io/2019-1010-1511-How-Make-macOS-10-15-Catalina-USB-Boot-Installer/</id>
+    <published>2019-10-10T09:37:31.000Z</published>
+    <updated>2019-10-10T09:37:31.966Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Run travis-ci tool on docker without install at your host system</title>
@@ -490,28 +504,6 @@
     
     
       <category term="osx" scheme="https://wicowen.github.io/tags/osx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Tmux scroll up at mac terminal</title>
-    <link href="https://wicowen.github.io/2016-0423-1552-Tmux-scroll-history-at-mac-terminal/"/>
-    <id>https://wicowen.github.io/2016-0423-1552-Tmux-scroll-history-at-mac-terminal/</id>
-    <published>2016-04-23T07:50:47.000Z</published>
-    <updated>2019-08-05T13:35:03.056Z</updated>
-    
-    <content type="html"><![CDATA[<p>at mac terminal,<br>when you at tmux,<br>cant use scroll up and down to watch scrollback buffer<br><a id="more"></a></p><p>How to fix ?<br>add this line to ~/.tmux.conf</p><pre><code>set -g terminal-overrides &apos;xterm*:smcup@:rmcup@&apos;</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;at mac terminal,&lt;br&gt;when you at tmux,&lt;br&gt;cant use scroll up and down to watch scrollback buffer&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="linux" scheme="https://wicowen.github.io/tags/linux/"/>
-    
-      <category term="tmux" scheme="https://wicowen.github.io/tags/tmux/"/>
     
   </entry>
   

@@ -4,6 +4,14 @@
   
     
     <entry>
+      <title><![CDATA[2019-1010-1511-How Make macOS 10.15 Catalina USB Boot Installer]]></title>
+      <url>https://wicowen.github.io/2019-1010-1511-How-Make-macOS-10-15-Catalina-USB-Boot-Installer/</url>
+      <content type="html"></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Run travis-ci tool on docker without install at your host system]]></title>
       <url>https://wicowen.github.io/2019-0728-1712-Run-travis-ci-tool-on-docker-without-install-at-your-host-system/</url>
       <content type="html"><![CDATA[<p>when use travis-ci to do auto deploy,<br>some time you want <code>crypto some string</code> like s3 bucket key … etc<br>&nbsp;<br>travis ci provide a tools <a href="https://github.com/travis-ci/travis.rb#readme" target="_blank" rel="noopener">Travis Client</a> that can let you encrypt data<br>but need install ruby &amp; gem to your global system, really dont like this way.<br>&nbsp;<br>so i use docker to do it.<br>&nbsp;<br><a id="more"></a></p>
