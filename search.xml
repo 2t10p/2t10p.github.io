@@ -6,9 +6,9 @@
     <entry>
       <title><![CDATA[How Make macOS Big Sur 11.0 USB Boot Installer]]></title>
       <url>https://wicowen.github.io/2020-1113-2331-How-Make-macOS-Big-Sur-11-0-USB-Boot-Installer/</url>
-      <content type="html"><![CDATA[<p>Apple release Big update macOS Big Sur 11.0 today !</p>
-<p>let’s make a make a USB bootable install loader for backup.</p>
-<h2 id="Here-is-step"><a href="#Here-is-step" class="headerlink" title="Here is step"></a>Here is step</h2><h4 id="1-Download-macOS-Big-Sur-11-0-from-App-Stroe-or-Systen-Update"><a href="#1-Download-macOS-Big-Sur-11-0-from-App-Stroe-or-Systen-Update" class="headerlink" title="1. Download macOS Big Sur 11.0 from App Stroe or Systen Update"></a>1. Download macOS Big Sur 11.0 from <code>App Stroe</code> or <code>Systen Update</code></h4><img src="/2020-1113-2331-How-Make-macOS-Big-Sur-11-0-USB-Boot-Installer/1.png" title="download it">
+      <content type="html"><![CDATA[<p>Apple release Big update <code>macOS Big Sur (11.0)</code> today.<br>Let’s make a make a USB bootable install loader for backup.</p>
+<hr>
+<h3 id="Step"><a href="#Step" class="headerlink" title="Step :"></a>Step :</h3><h4 id="1-Download-macOS-Big-Sur-11-0-from-App-Stroe-or-Systen-Update"><a href="#1-Download-macOS-Big-Sur-11-0-from-App-Stroe-or-Systen-Update" class="headerlink" title="1. Download macOS Big Sur 11.0 from App Stroe or Systen Update"></a>1. Download macOS Big Sur 11.0 from <code>App Stroe</code> or <code>Systen Update</code></h4><img src="/2020-1113-2331-How-Make-macOS-Big-Sur-11-0-USB-Boot-Installer/1.png" title="download it">
 <a id="more"></a>
 <img src="/2020-1113-2331-How-Make-macOS-Big-Sur-11-0-USB-Boot-Installer/2.png" title="download it">
 <h4 id="2-When-download-was-done-and-show-this-window-DO-NOT-click-continue"><a href="#2-When-download-was-done-and-show-this-window-DO-NOT-click-continue" class="headerlink" title="2. When download was done and show this window, DO NOT click continue."></a>2. When download was done and show this window, <code>DO NOT</code> click <code>continue</code>.</h4><img src="/2020-1113-2331-How-Make-macOS-Big-Sur-11-0-USB-Boot-Installer/3.png" title="install window">
